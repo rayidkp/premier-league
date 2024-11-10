@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Stream</title>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      color: white;
+    }
+    video {
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video element for streaming -->
+  <video id="video" controls></video>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    if (Hls.isSupported()) {
+      var video = document.getElementById('video');
+      var hls = new Hls();
+      hls.loadSource('https://absia5aqaiaiaaayaaaaaaaaaaaaa.live-cf.cdn.hotstar.com/hls/live/2003898/inallow-slk-2024/mal/1540032279/15mindvrm01cf8b7c339a834cc7920e33d43afccee310november2024/master_ap_1080_6.m3u8?CloudFront-Key-Pair-Id=APKAJC3ILMJXG4AINKJA&CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9hYnNpYTVhcWFpYWlhYWF5YWFhYWFhYWFhYWFhYS5saXZlLWNmLmNkbi5ob3RzdGFyLmNvbS9obHMvbGl2ZS8yMDAzODk4L2luYWxsb3ctc2xrLTIwMjQvbWFsLzE1NDAwMzIyNzkvMTVtaW5kdnJtMDFjZjhiN2MzMzlhODM0Y2M3OTIwZTMzZDQzYWZjY2VlMzEwbm92ZW1iZXIyMDI0LyoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3MzEzMzYxODF9fX1dfQ&CloudFront-Signature=L~9wWTnjKSyFFLaF4POnN307OXXaZ5QCJT0DnGkFmO1330eGljqH6Kcb-9alluwU0Jwc4W2l~uGw4wbFGNpBPuOe6Hg2-PV4AuTKBVzkcC0Aj-d5zL~XFU8hOTUCpqSl0RGfdjsCN5re-Rfa1kHm6xO5-brLVGcSl8FuX-ErkHV7mEYT4ynIURvawwLzjZIUwh4sKQBeyzKsGoiKu79SXHy49TSTaWHgAClhCwOo2AIg2vdt5Ftw1DRfw6PJxrnUyKDq5ipd89~WZ9WeiS6TjylmdJhJrc886dK2hozjixGyP2UxnzDIOe5wNE-bQwh-X8XqsPqBrZpBtCIO1qhq5~g&hdntl=exp=1731251581~raf=1731250381~acl=/hls/live/2003898/inallow-slk-2024/mal/1540032279/15mindvrm01cf8b7c339a834cc7920e33d43afccee310november2024/master_ap~ttl=1800~type=paid~data=ip=6A9QVPFpvWv7pHRDDsds2q2aYQ1KfzBpplHYDHTOpv07VuZSkMeZe4F-userid=JE87OJfJXr9Q51HyNoTqwy5fC3HIyCbj9IKrVEfOd9r1-did=IkHYUZGG2fPX0V3fJZefMimfwJLJ8NJQWjCgT0Q4HCxJ-cc=in-~hmac=8272456fe1e20721f4736f0ef5d3773f06ed6ddad02b6cb7657c4610a7cb9fd7');
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // For browsers that support HLS natively (like Safari)
+      video.src = 'https://absia5aqaiaiaaayaaaaaaaaaaaaa.live-cf.cdn.hotstar.com/hls/live/2003898/inallow-slk-2024/mal/1540032279/15mindvrm01cf8b7c339a834cc7920e33d43afccee310november2024/master_ap_1080_6.m3u8?CloudFront-Key-Pair-Id=APKAJC3ILMJXG4AINKJA&CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9hYnNpYTVhcWFpYWlhYWF5YWFhYWFhYWFhYWFhYS5saXZlLWNmLmNkbi5ob3RzdGFyLmNvbS9obHMvbGl2ZS8yMDAzODk4L2luYWxsb3ctc2xrLTIwMjQvbWFsLzE1NDAwMzIyNzkvMTVtaW5kdnJtMDFjZjhiN2MzMzlhODM0Y2M3OTIwZTMzZDQzYWZjY2VlMzEwbm92ZW1iZXIyMDI0LyoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3MzEzMzYxODF9fX1dfQ&CloudFront-Signature=L~9wWTnjKSyFFLaF4POnN307OXXaZ5QCJT0DnGkFmO1330eGljqH6Kcb-9alluwU0Jwc4W2l~uGw4wbFGNpBPuOe6Hg2-PV4AuTKBVzkcC0Aj-d5zL~XFU8hOTUCpqSl0RGfdjsCN5re-Rfa1kHm6xO5-brLVGcSl8FuX-ErkHV7mEYT4ynIURvawwLzjZIUwh4sKQBeyzKsGoiKu79SXHy49TSTaWHgAClhCwOo2AIg2vdt5Ftw1DRfw6PJxrnUyKDq5ipd89~WZ9WeiS6TjylmdJhJrc886dK2hozjixGyP2UxnzDIOe5wNE-bQwh-X8XqsPqBrZpBtCIO1qhq5~g&hdntl=exp=1731251581~raf=1731250381~acl=/hls/live/2003898/inallow-slk-2024/mal/1540032279/15mindvrm01cf8b7c339a834cc7920e33d43afccee310november2024/master_ap~ttl=1800~type=paid~data=ip=6A9QVPFpvWv7pHRDDsds2q2aYQ1KfzBpplHYDHTOpv07VuZSkMeZe4F-userid=JE87OJfJXr9Q51HyNoTqwy5fC3HIyCbj9IKrVEfOd9r1-did=IkHYUZGG2fPX0V3fJZefMimfwJLJ8NJQWjCgT0Q4HCxJ-cc=in-~hmac=8272456fe1e20721f4736f0ef5d3773f06ed6ddad02b6cb7657c4610a7cb9fd7';
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    }
+  </script>
+
+</body>
+</html>
